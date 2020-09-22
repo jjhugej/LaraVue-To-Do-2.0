@@ -42,10 +42,11 @@ export default {
     },
     methods: {
         submitTodoForm: function() {
-            console.log(this.formData);
             axios
                 .post("/todoitem", this.formData)
-                .then(response => console.log(response))
+                .then(response => {
+                    this.$store.commit("setNewTodoItem", response.data);
+                })
                 .catch(errors => console.log(errors));
         }
     },

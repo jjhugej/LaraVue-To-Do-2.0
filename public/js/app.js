@@ -2097,9 +2097,10 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     submitTodoForm: function submitTodoForm() {
-      console.log(this.formData);
+      var _this = this;
+
       axios.post("/todoitem", this.formData).then(function (response) {
-        return console.log(response);
+        _this.$store.commit("setNewTodoItem", response.data);
       })["catch"](function (errors) {
         return console.log(errors);
       });
@@ -2232,9 +2233,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {
-      todoItems: []
-    };
+    return {};
+  },
+  computed: {
+    todoItems: function todoItems() {
+      console.log("compute call");
+      return this.$store.state.todoItems;
+    }
   },
   mounted: function mounted() {
     var _this = this;
@@ -2242,7 +2247,8 @@ __webpack_require__.r(__webpack_exports__);
     //retrieve all todoitems on mount and push to array
     axios.get("todoitem").then(function (response) {
       response.data.forEach(function (todoItem) {
-        _this.todoItems.push(todoItem);
+        //push todoitems to vuex store
+        _this.$store.commit("setInitialTodoItems", todoItem);
       });
     })["catch"](function (errors) {
       return console.log(errors);
@@ -37953,9 +37959,17 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
       usersName: "",
       usersEmail: "",
       isLoggedIn: false
-    }
+    },
+    //TODO: STATE IS NOT REACTIVE WHEN INPUTTING NEW TODO ITEM
+    todoItems: []
   },
   mutations: {
+    setInitialTodoItems: function setInitialTodoItems(state, todoItem) {
+      state.todoItems.push(todoItem);
+    },
+    setNewTodoItem: function setNewTodoItem(state, todoItem) {
+      state.todoItems.push(todoItem);
+    },
     setLoggedInUser: function setLoggedInUser(state, user) {
       state.user.userID = user.id;
       state.user.usersName = user.name;
@@ -37967,6 +37981,11 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
       state.user.usersName = "";
       state.user.usersEmail = "";
       state.user.isLoggedIn = false;
+    }
+  },
+  getters: {
+    getTodoItems: function getTodoItems(state) {
+      return state.todoItems;
     }
   }
 });

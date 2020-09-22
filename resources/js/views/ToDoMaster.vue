@@ -13,9 +13,13 @@
 <script>
 export default {
     data: function() {
-        return {
-            todoItems: []
-        };
+        return {};
+    },
+    computed: {
+        todoItems: function() {
+            console.log("compute call");
+            return this.$store.state.todoItems;
+        }
     },
     mounted() {
         //retrieve all todoitems on mount and push to array
@@ -23,7 +27,8 @@ export default {
             .get("todoitem")
             .then(response => {
                 response.data.forEach(todoItem => {
-                    this.todoItems.push(todoItem);
+                    //push todoitems to vuex store
+                    this.$store.commit("setInitialTodoItems", todoItem);
                 });
             })
             .catch(errors => console.log(errors));

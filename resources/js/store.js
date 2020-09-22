@@ -10,9 +10,17 @@ const store = new Vuex.Store({
             usersName: "",
             usersEmail: "",
             isLoggedIn: false
-        }
+        },
+        //TODO: STATE IS NOT REACTIVE WHEN INPUTTING NEW TODO ITEM
+        todoItems: []
     },
     mutations: {
+        setInitialTodoItems(state, todoItem) {
+            state.todoItems.push(todoItem);
+        },
+        setNewTodoItem(state, todoItem) {
+            state.todoItems.push(todoItem);
+        },
         setLoggedInUser(state, user) {
             state.user.userID = user.id;
             state.user.usersName = user.name;
@@ -24,6 +32,11 @@ const store = new Vuex.Store({
             state.user.usersName = "";
             state.user.usersEmail = "";
             state.user.isLoggedIn = false;
+        }
+    },
+    getters: {
+        getTodoItems: state => {
+            return state.todoItems;
         }
     }
 });
