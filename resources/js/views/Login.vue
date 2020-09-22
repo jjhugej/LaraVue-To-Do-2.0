@@ -72,7 +72,10 @@ export default {
             console.log("logged in");
             axios
               .get("/user")
-              .then((response) => console.log(response))
+              .then((response) => {
+                this.$store.commit("setLoggedInUser", response.data);
+                this.$router.push("/");
+              })
               .catch((errors) => console.log(errors));
           })
           .catch((errors) => {
