@@ -25,4 +25,7 @@ Route::get('/user', function(){
     }
 });
 
+Route::post('/todoitem', 'App\Http\Controllers\TodoItemController@store')->middleware('auth');
+Route::get('/todoitem', 'App\Http\Controllers\TodoItemController@index')->middleware('auth');
+
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);

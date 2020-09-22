@@ -2035,15 +2035,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ["id", "title", "notes"],
+  data: function data() {
+    return {};
+  },
   mounted: function mounted() {}
 });
 
@@ -2229,8 +2225,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {}
+  data: function data() {
+    return {
+      todoItems: []
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    //retrieve all todoitems on mount and push to array
+    axios.get("todoitem").then(function (response) {
+      response.data.forEach(function (todoItem) {
+        _this.todoItems.push(todoItem);
+      });
+    })["catch"](function (errors) {
+      return console.log(errors);
+    });
+  }
 });
 
 /***/ }),
@@ -20656,43 +20673,24 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("article", { staticClass: "message" }, [
-        _c("div", { staticClass: "message-header" }, [
-          _c("p", [_vm._v("Hello World")]),
-          _vm._v(" "),
-          _c("button", {
-            staticClass: "delete",
-            attrs: { "aria-label": "delete" }
-          })
-        ]),
+  return _c("div", { staticClass: "container" }, [
+    _c("article", { staticClass: "message" }, [
+      _c("div", { staticClass: "message-header" }, [
+        _c("p", [_vm._v(_vm._s(_vm.title))]),
         _vm._v(" "),
-        _c("div", { staticClass: "message-body" }, [
-          _vm._v(
-            "\n            Lorem ipsum dolor sit amet, consectetur adipiscing elit.\n            "
-          ),
-          _c("strong", [_vm._v("Pellentesque risus mi")]),
-          _vm._v(
-            ", tempus quis placerat ut,\n            porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla.\n            Nullam gravida purus diam, et dictum\n            "
-          ),
-          _c("a", [_vm._v("felis venenatis")]),
-          _vm._v(" efficitur. Aenean ac\n            "),
-          _c("em", [_vm._v("eleifend lacus")]),
-          _vm._v(
-            ", in mollis lectus. Donec sodales, arcu\n            et sollicitudin porttitor, tortor urna tempor ligula, id\n            porttitor mi magna a neque. Donec dui urna, vehicula et sem\n            eget, facilisis sodales sem.\n        "
-          )
-        ])
+        _c("button", {
+          staticClass: "delete",
+          attrs: { "aria-label": "delete" }
+        })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "message-body" }, [
+        _vm._v("\n            " + _vm._s(_vm.notes) + "\n        ")
       ])
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -21029,8 +21027,17 @@ var render = function() {
   return _c(
     "div",
     { staticClass: "container" },
-    [_c("to-do-form"), _vm._v(" "), _c("to-do-card")],
-    1
+    [
+      _c("to-do-form"),
+      _vm._v(" "),
+      _vm._l(_vm.todoItems, function(todoItem) {
+        return _c("to-do-card", {
+          key: todoItem.id,
+          attrs: { title: todoItem.title, notes: todoItem.notes }
+        })
+      })
+    ],
+    2
   )
 }
 var staticRenderFns = []

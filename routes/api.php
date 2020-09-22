@@ -22,4 +22,4 @@ use Illuminate\Support\Facades\Route;
     return auth()->user();
 }); */
 
-Route::post('/todoitem', 'ToDoController@store');
+//Route::post('/todoitem', 'App\Http\Controllers\TodoItemController@store');
