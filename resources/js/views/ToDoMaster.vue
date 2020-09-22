@@ -1,13 +1,7 @@
 <template>
   <div class="container">
-    <div class="field has-addons">
-      <div class="control is-expanded">
-        <input class="input" type="text" placeholder="Go To The Grocery Store" />
-      </div>
-      <div class="control">
-        <a class="button is-info">Save</a>
-      </div>
-    </div>
+    <to-do-form></to-do-form>
+    <to-do-card></to-do-card>
   </div>
 </template>
 

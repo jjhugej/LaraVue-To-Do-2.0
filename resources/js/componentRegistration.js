@@ -1,14 +1,20 @@
 import Vue from "vue";
 
-//Global Vue component registration
-
-/* Vue.component(
-    "test-component",
-    require("./components/TestComponent.vue").default
-); */
-
+//Main Component (loads router-view)
 Vue.component(
     "main-component",
     require("./components/MainComponent.vue").default
 );
+
+//NavBar Component
 Vue.component("nav-bar", require("./components/NavBar.vue").default);
+
+//To-Do List Components
+Vue.component(
+    "to-do-form",
+    require("./components/toDoListMain/toDoForm.vue").default
+);
+Vue.component(
+    "to-do-card",
+    require("./components/toDoListMain/toDoCard.vue").default
+);

@@ -21,3 +21,5 @@ use Illuminate\Support\Facades\Route;
 /* Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return auth()->user();
 }); */
+
+Route::post('/todoitem', 'ToDoController@store');
