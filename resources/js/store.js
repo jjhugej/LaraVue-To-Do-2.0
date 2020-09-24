@@ -42,16 +42,3 @@ const store = new Vuex.Store({
 });
 
 export default store;
-
-/*
-    this code is used for testing the store
-const store = new Vuex.Store({
-    state: {
-        count: 0
-    },
-    mutations: {
-        increment(state) {
-            state.count++;
-        }
-    }
-}); */

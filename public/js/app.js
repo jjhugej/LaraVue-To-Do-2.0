@@ -2033,8 +2033,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["id", "title", "notes"],
   data: function data() {
@@ -2100,7 +2098,10 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios.post("/todoitem", this.formData).then(function (response) {
-        _this.$store.commit("setNewTodoItem", response.data);
+        //this.$store.commit("setNewTodoItem", response.data);
+        _this.$store.commit("setInitialTodoItems", response.data);
+
+        console.log(response.data);
       })["catch"](function (errors) {
         return console.log(errors);
       });
@@ -2237,7 +2238,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     todoItems: function todoItems() {
-      console.log("compute call");
       return this.$store.state.todoItems;
     }
   },
@@ -2270,7 +2270,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.container[data-v-537e52e1] {\r\n    margin: 20px 0;\n}\r\n", ""]);
+exports.push([module.i, "\n.container[data-v-537e52e1] {\r\n  margin: 20px 0;\n}\r\n", ""]);
 
 // exports
 
@@ -20690,9 +20690,7 @@ var render = function() {
         })
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "message-body" }, [
-        _vm._v("\n            " + _vm._s(_vm.notes) + "\n        ")
-      ])
+      _c("div", { staticClass: "message-body" }, [_vm._v(_vm._s(_vm.notes))])
     ])
   ])
 }
@@ -37990,18 +37988,6 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   }
 });
 /* harmony default export */ __webpack_exports__["default"] = (store);
-/*
-    this code is used for testing the store
-const store = new Vuex.Store({
-    state: {
-        count: 0
-    },
-    mutations: {
-        increment(state) {
-            state.count++;
-        }
-    }
-}); */
 
 /***/ }),
 
