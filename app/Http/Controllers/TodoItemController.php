@@ -96,8 +96,12 @@ class TodoItemController extends Controller
      * @param  \App\Models\TodoItem  $todoItem
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TodoItem $todoItem)
+    public function destroy($todoID)
     {
-        //
+        $todoItem = TodoItem::where('id', $todoID)->first();
+        $todoItem->delete();
+
+        return $todoItem;
+        //return $todoID;
     }
 }

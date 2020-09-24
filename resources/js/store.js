@@ -19,7 +19,13 @@ const store = new Vuex.Store({
             state.todoItems.push(todoItem);
         },
         setNewTodoItem(state, todoItem) {
-            state.todoItems.push(todoItem);
+            state.todoItems.unshift(todoItem);
+        },
+        deleteTodoItem(state, todoItemID) {
+            const todoItemsArrIndex = state.todoItems
+                .map(todoItem => todoItem.id)
+                .indexOf(todoItemID);
+            state.todoItems.splice(todoItemsArrIndex, 1);
         },
         setLoggedInUser(state, user) {
             state.user.userID = user.id;

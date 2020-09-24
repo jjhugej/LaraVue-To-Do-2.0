@@ -2033,10 +2033,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["id", "title", "notes"],
   data: function data() {
     return {};
+  },
+  methods: {
+    deleteTodoItem: function deleteTodoItem() {
+      axios["delete"]("/todoitem/" + this.id).then(function (response) {
+        return console.log(response);
+      })["catch"](function (error) {
+        return console.log(error);
+      });
+      this.$store.commit("deleteTodoItem", this.id);
+    }
   },
   mounted: function mounted() {}
 });
@@ -2099,9 +2113,8 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.post("/todoitem", this.formData).then(function (response) {
         //this.$store.commit("setNewTodoItem", response.data);
-        _this.$store.commit("setInitialTodoItems", response.data);
+        _this.$store.commit("setNewTodoItem", response.data); // console.log(response.data);
 
-        console.log(response.data);
       })["catch"](function (errors) {
         return console.log(errors);
       });
@@ -2232,15 +2245,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {};
+    return {//todoItems: []
+    };
   },
   computed: {
     todoItems: function todoItems() {
-      return this.$store.state.todoItems;
+      return this.$store.getters.getTodoItems;
     }
   },
+
+  /* watch: {
+      todoItems() {
+          console.log("todoItems changed");
+          return this.todoItems;
+      }
+  }, */
   mounted: function mounted() {
     var _this = this;
 
@@ -2270,7 +2292,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.container[data-v-537e52e1] {\r\n  margin: 20px 0;\n}\r\n", ""]);
+exports.push([module.i, "\n.container[data-v-537e52e1] {\r\n    margin: 20px 0;\n}\r\n", ""]);
 
 // exports
 
@@ -20686,7 +20708,8 @@ var render = function() {
         _vm._v(" "),
         _c("button", {
           staticClass: "delete",
-          attrs: { "aria-label": "delete" }
+          attrs: { "aria-label": "delete" },
+          on: { click: _vm.deleteTodoItem }
         })
       ]),
       _vm._v(" "),
@@ -21037,7 +21060,11 @@ var render = function() {
       _vm._l(_vm.todoItems, function(todoItem) {
         return _c("to-do-card", {
           key: todoItem.id,
-          attrs: { title: todoItem.title, notes: todoItem.notes }
+          attrs: {
+            id: todoItem.id,
+            title: todoItem.title,
+            notes: todoItem.notes
+          }
         })
       })
     ],
@@ -37966,7 +37993,13 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
       state.todoItems.push(todoItem);
     },
     setNewTodoItem: function setNewTodoItem(state, todoItem) {
-      state.todoItems.push(todoItem);
+      state.todoItems.unshift(todoItem);
+    },
+    deleteTodoItem: function deleteTodoItem(state, todoItemID) {
+      var todoItemsArrIndex = state.todoItems.map(function (todoItem) {
+        return todoItem.id;
+      }).indexOf(todoItemID);
+      state.todoItems.splice(todoItemsArrIndex, 1);
     },
     setLoggedInUser: function setLoggedInUser(state, user) {
       state.user.userID = user.id;
