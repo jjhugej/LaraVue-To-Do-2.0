@@ -3,11 +3,30 @@
         <section class="hero is-primary is-fullheight">
             <div class="hero-body">
                 <div class="container">
+                    <h1 class="has-text-center">Register</h1>
                     <div class="columns is-centered">
                         <div
                             class="column is-5-tablet is-5-desktop is-5-widescreen"
                         >
                             <form v-on:submit.prevent action class="box">
+                                <div class="field">
+                                    <label for class="label">Name</label>
+                                    <div class="control">
+                                        <input
+                                            v-model="formData.name"
+                                            type="text"
+                                            placeholder="Bob Smith"
+                                            class="input"
+                                            required
+                                        />
+                                    </div>
+                                    <p
+                                        class="has-text-danger"
+                                        v-if="errors.name"
+                                    >
+                                        {{ errors.name[0] }}
+                                    </p>
+                                </div>
                                 <div class="field">
                                     <label for class="label">Email</label>
                                     <div class="control">
@@ -45,25 +64,34 @@
                                     </p>
                                 </div>
                                 <div class="field">
-                                    <label for class="checkbox">
+                                    <label for class="label"
+                                        >Confirm Password</label
+                                    >
+                                    <div class="control">
                                         <input
-                                            type="checkbox"
-                                            v-model="formData.remember"
+                                            v-model="
+                                                formData.password_confirmation
+                                            "
+                                            type="password"
+                                            placeholder="*******"
+                                            class="input"
+                                            required
                                         />
-                                        Remember me
-                                    </label>
+                                    </div>
+                                    <p
+                                        class="has-text-danger"
+                                        v-if="errors.password_confirmation"
+                                    >
+                                        {{ errors.password_confirmation[0] }}
+                                    </p>
                                 </div>
                                 <div class="field">
                                     <button
-                                        @click="submitLoginForm"
+                                        @click="submitRegistrationForm"
                                         class="button is-success"
                                     >
-                                        Login
+                                        Register
                                     </button>
-                                    <router-link to="/register"
-                                        >Don't have an account? Register
-                                        here.</router-link
-                                    >
                                 </div>
                             </form>
                         </div>
@@ -78,6 +106,7 @@ export default {
     data: function() {
         return {
             formData: {
+                name: "",
                 email: "",
                 password: "",
                 remember: false
@@ -86,33 +115,19 @@ export default {
         };
     },
     methods: {
-        submitLoginForm: function() {
+        submitRegistrationForm: function() {
             //console.log(this.formData);
             this.errors = {};
-            axios.get("/sanctum/csrf-cookie").then(() => {
-                axios
-                    .post("/login", this.formData)
-                    .then(response => {
-                        console.log("logged in");
-                        axios
-                            .get("/user")
-                            .then(response => {
-                                this.$store.commit(
-                                    "setLoggedInUser",
-                                    response.data
-                                );
-                                this.$router.push("/");
-                            })
-                            .catch(errors => console.log(errors));
-                    })
-                    .catch(errors => {
-                        console.log(errors.response.data.errors);
-                        this.errors = errors.response.data.errors;
-                    });
-            });
-        }
-    },
-    mounted: function() {}
+            axios
+                .post("/register", this.formData)
+                .then(response => {
+                    this.$store.commit("setLoggedInUser", response.data);
+                    this.$router.push("/");
+                })
+                .catch(errors => console.log(errors));
+        },
+        mounted: function() {}
+    }
 };
 </script>
 <style scoped></style>

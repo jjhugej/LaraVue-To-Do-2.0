@@ -18,3 +18,7 @@ Vue.component(
     "to-do-card",
     require("./components/toDoListMain/toDoCard.vue").default
 );
+Vue.component(
+    "alert-message",
+    require("./components/AlertMessage.vue").default
+);
