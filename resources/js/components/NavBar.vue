@@ -1,46 +1,44 @@
 <template>
-  <div class="container">
-    <nav class="navbar" role="navigation" aria-label="main navigation">
-      <div class="navbar-brand">
-        <a class="navbar-item" href="/">Laravue To-Do</a>
-        <a
-          v-on:click="toggleNavBarBurger"
-          role="button"
-          class="navbar-burger burger"
-          v-bind:class="{ 'is-active': active }"
-          aria-label="menu"
-          aria-expanded="false"
-          data-target="navbarBasicExample"
-        >
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-        </a>
-      </div>
-
-      <div
-        id="navbarBasicExample"
-        class="navbar-menu"
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="/">Laravue To-Do</a>
+      <a
+        v-on:click="toggleNavBarBurger"
+        role="button"
+        class="navbar-burger burger"
         v-bind:class="{ 'is-active': active }"
+        aria-label="menu"
+        aria-expanded="false"
+        data-target="navbarBasicExample"
       >
-        <div class="navbar-end">
-          <div class="navbar-item">
-            <div class="buttons">
-              <router-link
-                v-if="!isLoggedIn"
-                to="/login"
-                class="button is-primary"
-                >Login</router-link
-              >
-              <a v-if="isLoggedIn" @click="logoutUser" class="button is-primary"
-                >Logout</a
-              >
-            </div>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+
+    <div
+      id="navbarBasicExample"
+      class="navbar-menu"
+      v-bind:class="{ 'is-active': active }"
+    >
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="buttons">
+            <router-link
+              v-if="!isLoggedIn"
+              to="/login"
+              class="button is-primary"
+              >Login</router-link
+            >
+            <a v-if="isLoggedIn" @click="logoutUser" class="button is-primary"
+              >Logout</a
+            >
           </div>
         </div>
       </div>
-    </nav>
-  </div>
+    </div>
+  </nav>
 </template>
 
 <script>
@@ -85,4 +83,9 @@ export default {
   },
 };
 </script>
-<style scoped></style>
+<style scoped>
+.navbar-brand {
+  font-weight: 500;
+  font-size: 18px;
+}
+</style>
