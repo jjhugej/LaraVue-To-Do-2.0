@@ -16,7 +16,7 @@ class TodoItemController extends Controller
     public function index()
     {
         $todoItems = TodoItem::where('user_id', Auth::id())
-                                ->orderBy('created_at', 'desc')
+                                ->orderBy('created_at')
                                 ->get();
 
         return $todoItems;

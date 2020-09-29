@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1>What do you need to do today?</h1>
+    <h1 class="has-text-centered">What do you need to do today?</h1>
     <div class="field">
       <div class="control is-expanded">
         <h2>Title:</h2>
@@ -25,7 +25,7 @@
         />
       </div>
       <div class="control">
-        <a @click="submitTodoForm" class="button is-info">Save</a>
+        <a @click="submitTodoForm" class="button is-primary">Save</a>
       </div>
     </div>
   </div>
@@ -74,5 +74,16 @@ export default {
 <style scoped>
 .container {
   margin: 20px 0;
+}
+.control {
+  margin: 20px 0;
+}
+h1 {
+  font-size: 26px;
+  font-weight: 600;
+}
+h2 {
+  font-weight: 600;
+  font-size: 20px;
 }
 </style>

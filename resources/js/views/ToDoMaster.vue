@@ -1,13 +1,19 @@
 <template>
-  <div class="container">
+  <div id="to-do-master" class="container">
     <to-do-form></to-do-form>
-    <to-do-card
-      v-for="todoItem in todoItems"
-      v-bind:key="todoItem.id"
-      v-bind:id="todoItem.id"
-      v-bind:title="todoItem.title"
-      v-bind:notes="todoItem.notes"
-    ></to-do-card>
+    <div id="to-do-list" class="box">
+      <p v-if="noTodoItems" class="has-text-centered">
+        Your to-do list is empty!
+      </p>
+      <to-do-card
+        class="to-do-card"
+        v-for="todoItem in todoItems"
+        v-bind:key="todoItem.id"
+        v-bind:id="todoItem.id"
+        v-bind:title="todoItem.title"
+        v-bind:notes="todoItem.notes"
+      ></to-do-card>
+    </div>
   </div>
 </template>
 
@@ -20,20 +26,45 @@ export default {
     todoItems: function () {
       return this.$store.getters.getTodoItems;
     },
+    noTodoItems: function () {
+      let todoArray = this.$store.getters.getTodoItems;
+
+      if (todoArray.length < 1) {
+        return true;
+      } else {
+        return false;
+      }
+    },
   },
   mounted() {
-    if (this.$store.state.user.isLoggedIn) {
-      // if user is logged in retrieve all todoitems on mount and push to array
-      axios
-        .get("todoitem")
-        .then((response) => {
-          response.data.forEach((todoItem) => {
-            //push todoitems to vuex store
-            this.$store.commit("setInitialTodoItems", todoItem);
-          });
-        })
-        .catch((errors) => console.log(errors));
-    }
+    // if user is logged in retrieve all todoitems on mount and push to array
+    axios
+      .get("todoitem")
+      .then((response) => {
+        response.data.forEach((todoItem) => {
+          //push todoitems to vuex store
+          this.$store.commit("setInitialTodoItems", todoItem);
+        });
+      })
+      .catch((errors) => console.log(errors));
   },
 };
 </script>
+<style scoped>
+p {
+  font-size: 20px;
+  font-weight: 500;
+}
+#to-do-master {
+  margin-bottom: 10vh;
+}
+#to-do-list {
+  border: solid 0.1px rgb(177, 177, 177);
+  border-radius: 30px;
+  min-height: 30vh;
+  padding: 2vh 2vw;
+}
+.to-do-card {
+  margin: 20px 0;
+}
+</style>

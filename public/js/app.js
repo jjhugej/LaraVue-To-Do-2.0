@@ -2103,11 +2103,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     deleteTodoItem: function deleteTodoItem() {
-      axios["delete"]("/todoitem/" + this.id).then(function (response) {
-        return console.log(response);
-      })["catch"](function (error) {
-        return console.log(error);
-      });
+      axios["delete"]("/todoitem/" + this.id);
       this.$store.commit("deleteTodoItem", this.id);
     }
   },
@@ -2489,6 +2485,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {};
@@ -2496,22 +2498,29 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     todoItems: function todoItems() {
       return this.$store.getters.getTodoItems;
+    },
+    noTodoItems: function noTodoItems() {
+      var todoArray = this.$store.getters.getTodoItems;
+
+      if (todoArray.length < 1) {
+        return true;
+      } else {
+        return false;
+      }
     }
   },
   mounted: function mounted() {
     var _this = this;
 
-    if (this.$store.state.user.isLoggedIn) {
-      // if user is logged in retrieve all todoitems on mount and push to array
-      axios.get("todoitem").then(function (response) {
-        response.data.forEach(function (todoItem) {
-          //push todoitems to vuex store
-          _this.$store.commit("setInitialTodoItems", todoItem);
-        });
-      })["catch"](function (errors) {
-        return console.log(errors);
+    // if user is logged in retrieve all todoitems on mount and push to array
+    axios.get("todoitem").then(function (response) {
+      response.data.forEach(function (todoItem) {
+        //push todoitems to vuex store
+        _this.$store.commit("setInitialTodoItems", todoItem);
       });
-    }
+    })["catch"](function (errors) {
+      return console.log(errors);
+    });
   }
 });
 
@@ -2548,7 +2557,26 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.container[data-v-537e52e1] {\r\n  margin: 20px 0;\n}\r\n", ""]);
+exports.push([module.i, "\n.container[data-v-537e52e1] {\r\n  margin: 20px 0;\n}\n.control[data-v-537e52e1] {\r\n  margin: 20px 0;\n}\nh1[data-v-537e52e1] {\r\n  font-size: 26px;\r\n  font-weight: 600;\n}\nh2[data-v-537e52e1] {\r\n  font-weight: 600;\r\n  font-size: 20px;\n}\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/ToDoMaster.vue?vue&type=style&index=0&id=fe0d3e72&scoped=true&lang=css&":
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/ToDoMaster.vue?vue&type=style&index=0&id=fe0d3e72&scoped=true&lang=css& ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\np[data-v-fe0d3e72] {\r\n  font-size: 20px;\r\n  font-weight: 500;\n}\n#to-do-master[data-v-fe0d3e72] {\r\n  margin-bottom: 10vh;\n}\n#to-do-list[data-v-fe0d3e72] {\r\n  border: solid 0.1px rgb(177, 177, 177);\r\n  border-radius: 30px;\r\n  min-height: 30vh;\r\n  padding: 2vh 2vw;\n}\n.to-do-card[data-v-fe0d3e72] {\r\n  margin: 20px 0;\n}\r\n", ""]);
 
 // exports
 
@@ -20260,6 +20288,36 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/ToDoMaster.vue?vue&type=style&index=0&id=fe0d3e72&scoped=true&lang=css&":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/ToDoMaster.vue?vue&type=style&index=0&id=fe0d3e72&scoped=true&lang=css& ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./ToDoMaster.vue?vue&type=style&index=0&id=fe0d3e72&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/ToDoMaster.vue?vue&type=style&index=0&id=fe0d3e72&scoped=true&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/lib/addStyles.js":
 /*!****************************************************!*\
   !*** ./node_modules/style-loader/lib/addStyles.js ***!
@@ -21037,7 +21095,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _c("article", { staticClass: "message" }, [
+    _c("article", { staticClass: "message is-info" }, [
       _c("div", { staticClass: "message-header" }, [
         _c("p", [_vm._v(_vm._s(_vm.title))]),
         _vm._v(" "),
@@ -21075,7 +21133,9 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _c("h1", [_vm._v("What do you need to do today?")]),
+    _c("h1", { staticClass: "has-text-centered" }, [
+      _vm._v("What do you need to do today?")
+    ]),
     _vm._v(" "),
     _c("div", { staticClass: "field" }, [
       _c("div", { staticClass: "control is-expanded" }, [
@@ -21148,7 +21208,10 @@ var render = function() {
       _c("div", { staticClass: "control" }, [
         _c(
           "a",
-          { staticClass: "button is-info", on: { click: _vm.submitTodoForm } },
+          {
+            staticClass: "button is-primary",
+            on: { click: _vm.submitTodoForm }
+          },
           [_vm._v("Save")]
         )
       ])
@@ -21674,10 +21737,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/ToDoMaster.vue?vue&type=template&id=fe0d3e72&":
-/*!********************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/ToDoMaster.vue?vue&type=template&id=fe0d3e72& ***!
-  \********************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/ToDoMaster.vue?vue&type=template&id=fe0d3e72&scoped=true&":
+/*!********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/ToDoMaster.vue?vue&type=template&id=fe0d3e72&scoped=true& ***!
+  \********************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -21691,22 +21754,36 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "container" },
+    { staticClass: "container", attrs: { id: "to-do-master" } },
     [
       _c("to-do-form"),
       _vm._v(" "),
-      _vm._l(_vm.todoItems, function(todoItem) {
-        return _c("to-do-card", {
-          key: todoItem.id,
-          attrs: {
-            id: todoItem.id,
-            title: todoItem.title,
-            notes: todoItem.notes
-          }
-        })
-      })
+      _c(
+        "div",
+        { staticClass: "box", attrs: { id: "to-do-list" } },
+        [
+          _vm.noTodoItems
+            ? _c("p", { staticClass: "has-text-centered" }, [
+                _vm._v("\n      Your to-do list is empty!\n    ")
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm._l(_vm.todoItems, function(todoItem) {
+            return _c("to-do-card", {
+              key: todoItem.id,
+              staticClass: "to-do-card",
+              attrs: {
+                id: todoItem.id,
+                title: todoItem.title,
+                notes: todoItem.notes
+              }
+            })
+          })
+        ],
+        2
+      )
     ],
-    2
+    1
   )
 }
 var staticRenderFns = []
@@ -38728,7 +38805,7 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
       state.todoItems.push(todoItem);
     },
     setNewTodoItem: function setNewTodoItem(state, todoItem) {
-      state.todoItems.unshift(todoItem);
+      state.todoItems.push(todoItem);
     },
     deleteTodoItem: function deleteTodoItem(state, todoItemID) {
       var todoItemsArrIndex = state.todoItems.map(function (todoItem) {
@@ -38927,9 +39004,11 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _ToDoMaster_vue_vue_type_template_id_fe0d3e72___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ToDoMaster.vue?vue&type=template&id=fe0d3e72& */ "./resources/js/views/ToDoMaster.vue?vue&type=template&id=fe0d3e72&");
+/* harmony import */ var _ToDoMaster_vue_vue_type_template_id_fe0d3e72_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ToDoMaster.vue?vue&type=template&id=fe0d3e72&scoped=true& */ "./resources/js/views/ToDoMaster.vue?vue&type=template&id=fe0d3e72&scoped=true&");
 /* harmony import */ var _ToDoMaster_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ToDoMaster.vue?vue&type=script&lang=js& */ "./resources/js/views/ToDoMaster.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _ToDoMaster_vue_vue_type_style_index_0_id_fe0d3e72_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ToDoMaster.vue?vue&type=style&index=0&id=fe0d3e72&scoped=true&lang=css& */ "./resources/js/views/ToDoMaster.vue?vue&type=style&index=0&id=fe0d3e72&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
 
 
 
@@ -38937,13 +39016,13 @@ __webpack_require__.r(__webpack_exports__);
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
   _ToDoMaster_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _ToDoMaster_vue_vue_type_template_id_fe0d3e72___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _ToDoMaster_vue_vue_type_template_id_fe0d3e72___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _ToDoMaster_vue_vue_type_template_id_fe0d3e72_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ToDoMaster_vue_vue_type_template_id_fe0d3e72_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
-  null,
+  "fe0d3e72",
   null
   
 )
@@ -38969,19 +39048,35 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/views/ToDoMaster.vue?vue&type=template&id=fe0d3e72&":
-/*!**************************************************************************!*\
-  !*** ./resources/js/views/ToDoMaster.vue?vue&type=template&id=fe0d3e72& ***!
-  \**************************************************************************/
+/***/ "./resources/js/views/ToDoMaster.vue?vue&type=style&index=0&id=fe0d3e72&scoped=true&lang=css&":
+/*!****************************************************************************************************!*\
+  !*** ./resources/js/views/ToDoMaster.vue?vue&type=style&index=0&id=fe0d3e72&scoped=true&lang=css& ***!
+  \****************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ToDoMaster_vue_vue_type_style_index_0_id_fe0d3e72_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./ToDoMaster.vue?vue&type=style&index=0&id=fe0d3e72&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/ToDoMaster.vue?vue&type=style&index=0&id=fe0d3e72&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ToDoMaster_vue_vue_type_style_index_0_id_fe0d3e72_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ToDoMaster_vue_vue_type_style_index_0_id_fe0d3e72_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ToDoMaster_vue_vue_type_style_index_0_id_fe0d3e72_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ToDoMaster_vue_vue_type_style_index_0_id_fe0d3e72_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_ToDoMaster_vue_vue_type_style_index_0_id_fe0d3e72_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/views/ToDoMaster.vue?vue&type=template&id=fe0d3e72&scoped=true&":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/views/ToDoMaster.vue?vue&type=template&id=fe0d3e72&scoped=true& ***!
+  \**************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ToDoMaster_vue_vue_type_template_id_fe0d3e72___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./ToDoMaster.vue?vue&type=template&id=fe0d3e72& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/ToDoMaster.vue?vue&type=template&id=fe0d3e72&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ToDoMaster_vue_vue_type_template_id_fe0d3e72___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ToDoMaster_vue_vue_type_template_id_fe0d3e72_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./ToDoMaster.vue?vue&type=template&id=fe0d3e72&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/ToDoMaster.vue?vue&type=template&id=fe0d3e72&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ToDoMaster_vue_vue_type_template_id_fe0d3e72_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ToDoMaster_vue_vue_type_template_id_fe0d3e72___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ToDoMaster_vue_vue_type_template_id_fe0d3e72_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

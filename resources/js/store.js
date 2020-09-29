@@ -25,7 +25,7 @@ const store = new Vuex.Store({
             state.todoItems.push(todoItem);
         },
         setNewTodoItem(state, todoItem) {
-            state.todoItems.unshift(todoItem);
+            state.todoItems.push(todoItem);
         },
         deleteTodoItem(state, todoItemID) {
             const todoItemsArrIndex = state.todoItems
