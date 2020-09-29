@@ -5,14 +5,16 @@
       <p v-if="noTodoItems" class="has-text-centered">
         Your to-do list is empty!
       </p>
-      <to-do-card
-        class="to-do-card"
-        v-for="todoItem in todoItems"
-        v-bind:key="todoItem.id"
-        v-bind:id="todoItem.id"
-        v-bind:title="todoItem.title"
-        v-bind:notes="todoItem.notes"
-      ></to-do-card>
+      <transition-group name="todoList">
+        <to-do-card
+          class="to-do-card"
+          v-for="todoItem in todoItems"
+          v-bind:key="todoItem.id"
+          v-bind:id="todoItem.id"
+          v-bind:title="todoItem.title"
+          v-bind:notes="todoItem.notes"
+        ></to-do-card
+      ></transition-group>
     </div>
   </div>
 </template>
@@ -30,6 +32,7 @@ export default {
       let todoArray = this.$store.getters.getTodoItems;
 
       if (todoArray.length < 1) {
+        //if todo array is empty return true(there are no todo items)
         return true;
       } else {
         return false;
@@ -59,12 +62,24 @@ p {
   margin-bottom: 10vh;
 }
 #to-do-list {
-  border: solid 0.1px rgb(177, 177, 177);
-  border-radius: 30px;
+  border: solid 0.1px rgb(190, 190, 190);
+  border-radius: 4px;
   min-height: 30vh;
   padding: 2vh 2vw;
 }
 .to-do-card {
   margin: 20px 0;
+}
+.todoList-enter-active,
+.todoList-leave-active {
+  transition: all 1.5s;
+}
+.todoList-enter {
+  opacity: 0;
+  transform: translateY(30px);
+}
+.todoList-leave-to {
+  opacity: 0;
+  transform: translateY(-30px);
 }
 </style>

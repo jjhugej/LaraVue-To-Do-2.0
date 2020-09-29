@@ -75,8 +75,8 @@ export default {
 .container {
   margin: 20px 0;
 }
-.control {
-  margin: 20px 0;
+input {
+  margin-bottom: 10px;
 }
 h1 {
   font-size: 26px;
